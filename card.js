@@ -1,4 +1,4 @@
-const data = [
+export const data = [
   {
     "name": "Harry Potter",
     "species": "human",
