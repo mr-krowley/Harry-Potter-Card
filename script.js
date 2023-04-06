@@ -1,42 +1,47 @@
-import { data } from "./card";
+import { data } from "./card.js";
 let containerCard = document.querySelector(".containerCard");
 
 function createCard(obj) {
   // функция создает одну карточку
   let card = document.createElement("div"); // создание саммой карточки
-  card.classList.add("full_card");
+  card.classList.add("card");
 
-  let image = document.createElement("image"); // создание картинки 
+  let textCard = document.createElement("div");
+  textCard.setAttribute("class", "textCard");
+
+  let image = document.createElement("img"); // создание картинки
   image.setAttribute("class", "image");
-  image.textContent = obj.image;
+  image.src = obj.image;
 
   let tname = document.createElement("h2"); //создание  заголовка name
   tname.classList.add("name");
   tname.textContent = obj.name;
 
-  let actor = document.createElement("p"); 
+  let actor = document.createElement("p"); // создание остального текста текста
   actor.classList.add("actor");
-  actor.textContent = obj.actor;
+  actor.textContent = `actor: ${obj.actor}`;
 
   let gender = document.createElement("p");
   gender.classList.add("gender");
-  gender.textContent = obj.gender;
+  gender.textContent = `gender: ${obj.gender}`;
 
   let house = document.createElement("p");
   house.classList.add("house");
-  house.textContent = obj.house;
+  house.textContent = `house: ${obj.house}`;
 
   let wand = document.createElement("p");
   wand.classList.add("wand");
-  wand.textContent = obj.wand;
+  wand.textContent = `wand: ${obj.wand}`;
 
   let alive = document.createElement("p");
   alive.classList.add("alive");
-  alive.textContent = obj.alive;
+  alive.textContent = `alive: ${obj.alive}`;
 
-  card.append(image, tname, actor, gender, house, wand, alive); //вставка созданного в Html
+  textCard.append(tname, actor, gender, house, wand, alive); //вставка текста в textCard
 
-  containerCard.append(card);
+  card.append(image, textCard); // вставка кортинки и коробки с текстом в карточку
+
+  containerCard.append(card); //вставка созданного в Html
 }
 
 function reviewCard(arr) {
