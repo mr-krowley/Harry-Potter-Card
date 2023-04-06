@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter";
-  
 }
 .container {
   width: 688px;
@@ -13,29 +12,25 @@
 .containerCard {
   display: grid;
   gap: 20px 20px;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   width: 688px;
   padding: 80px 0 49px;
   margin: 0 auto;
- 
-  margin-top: 81px;
 }
-.card{
-  
-  background:#FFFFFF;
-  border: 1px solid #D4D3D8;
+.card {
+  background: #ffffff;
+  border: 1px solid #d4d3d8;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  
+
   justify-content: space-between;
-  
 }
-.textCard{
+.textCard {
   padding: 24px;
-  background:#FFFFFF;
+  background: #ffffff;
 }
-.textCard > p{
+.textCard > p {
   font-weight: 800;
   font-size: 16px;
   line-height: 24px;
@@ -47,7 +42,6 @@
   display: block;
   object-fit: cover;
 }
-  
 
 .name {
   font-weight: 800;
@@ -58,7 +52,7 @@
 }
 body {
   height: 100vh;
-  background: #DEE2E6;
+  background: #dee2e6;
 }
 
 header {
@@ -67,7 +61,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #DEE2E6;
+  background: #dee2e6;
 }
 h1 {
   font-weight: 700;
@@ -104,7 +98,6 @@ input:focus {
   box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
 }
 
-
 .select {
   margin-left: 20px;
 }
@@ -131,12 +124,3 @@ select:focus {
 .searching {
   display: flex;
 }
-
-
-
-
-
-
-
-
-

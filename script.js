@@ -1,5 +1,6 @@
 import { data } from "./card.js";
 let containerCard = document.querySelector(".containerCard");
+const input = document.querySelector("input");
 
 function createCard(obj) {
   // функция создает одну карточку
@@ -52,4 +53,18 @@ function reviewCard(arr) {
 
   //return arr;
 }
+function searchFilter(event) {
+  // функция обработчик поисковой строки сравнение ввода с ключевыми словами карточек name
+  let value = event.target.value.toLowerCase().trim();
+  let filterDate = data.filter((card) =>
+    card.name.toLowerCase().includes(value)
+  );
+  containerCard.innerHTML = "";
+  reviewCard(filterDate);
+  console.dir(value);
+  console.log("работаю");
+}
+
+
 reviewCard(data);
+input.addEventListener("input", searchFilter);
