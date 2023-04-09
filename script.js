@@ -1,5 +1,5 @@
 import { data } from "./card.js";
-let containerCard = document.querySelector(".containerCard");
+const containerCard = document.querySelector(".containerCard");
 const input = document.querySelector("input");
 const select = document.querySelector("select");
 const option = document.querySelector(".optionDefolt");
