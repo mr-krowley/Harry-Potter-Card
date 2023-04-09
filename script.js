@@ -56,19 +56,20 @@ function reviewCard(arr) {
   //return arr;
 }
 function searchFilter(event) {
-  // функция обработчик поисковой строки сравнение ввода с ключевыми словами карточек name
-  let value = event.target.value.toLowerCase().trim();
-  let selectValue = event.target;
-  let filterDate = data.filter((card) =>
-    (card.name.toLowerCase().includes(value) &&
-      card.house.includes(selectValue == option)) ||
-    card.house.includes(selectValue)
-  
+  // функция обработчик поисковой строки сравнение ввода с ключевыми словами карточек name и выбор селекта house
+  let inputValue = event.target.value.toLowerCase().trim();
+  let selectValue = event.target.value;
+
+  let filterDate = data.filter(
+    (card) =>
+      (card.name.toLowerCase().includes(inputValue) &&
+        card.house.includes(selectValue !== option)) ||
+      card.house.includes(selectValue)
   );
-    containerCard.innerHTML = "";
-    reviewCard(filterDate);
-    console.dir(value);
-    console.log("работаю");
+  containerCard.innerHTML = "";
+  reviewCard(filterDate);
+  console.dir(value);
+  console.log("работаю");
 }
 
 
@@ -92,9 +93,12 @@ const renderOption = (array) => {
 
 }
 
-reviewCard(data);
-selectData(data);
+
 
 
 input.addEventListener("input", searchFilter);
 select.addEventListener("change", searchFilter);
+
+reviewCard(data);
+
+selectData(data);
