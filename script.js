@@ -1,6 +1,8 @@
 import { data } from "./card.js";
 let containerCard = document.querySelector(".containerCard");
 const input = document.querySelector("input");
+const select = document.querySelector("select");
+const option = document.querySelector(".optionDefolt");
 
 function createCard(obj) {
   // функция создает одну карточку
@@ -32,7 +34,7 @@ function createCard(obj) {
 
   let wand = document.createElement("p");
   wand.classList.add("wand");
-  wand.textContent = `wand: ${obj.wand}`;
+  wand.textContent = `wand: ${obj.wand.core ? obj.wand.core : "unknown"}`;
 
   let alive = document.createElement("p");
   alive.classList.add("alive");
@@ -56,15 +58,43 @@ function reviewCard(arr) {
 function searchFilter(event) {
   // функция обработчик поисковой строки сравнение ввода с ключевыми словами карточек name
   let value = event.target.value.toLowerCase().trim();
+  let selectValue = event.target;
   let filterDate = data.filter((card) =>
-    card.name.toLowerCase().includes(value)
+    (card.name.toLowerCase().includes(value) &&
+      card.house.includes(selectValue == option)) ||
+    card.house.includes(selectValue)
+  
   );
-  containerCard.innerHTML = "";
-  reviewCard(filterDate);
-  console.dir(value);
-  console.log("работаю");
+    containerCard.innerHTML = "";
+    reviewCard(filterDate);
+    console.dir(value);
+    console.log("работаю");
 }
 
 
+
+const selectData = (arr) => {
+  // функция создает новый  масив со списком школ оставляя уникальные значения
+  const newData = arr.map((elem)=> elem.house) ; // преобразую данные сставляя только названия школ
+  const endData = [...new Set(newData)]; // фильтрую на юникальность в новый масив
+   renderOption(endData);
+}
+
+const renderOption = (array) => {
+  // функция создания option в html
+  array.forEach((element) => {
+    let option = document.createElement("option");
+    option.textContent = element;
+    select.append(option);
+
+  });
+
+
+}
+
 reviewCard(data);
+selectData(data);
+
+
 input.addEventListener("input", searchFilter);
+select.addEventListener("change", searchFilter);
