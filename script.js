@@ -57,19 +57,16 @@ function reviewCard(arr) {
 }
 function searchFilter(event) {
   // функция обработчик поисковой строки сравнение ввода с ключевыми словами карточек name и выбор селекта house
-  let inputValue = event.target.value.toLowerCase().trim();
-  let selectValue = event.target.value;
-
   let filterDate = data.filter(
     (card) =>
-      (card.name.toLowerCase().includes(inputValue) &&
-        card.house.includes(selectValue !== option)) ||
-      card.house.includes(selectValue)
-  );
+      card.house.includes(select.value)                                                                                                      
+  )
+    .filter(
+    (card) =>
+  card.name.toLowerCase().includes(input.value.toLowerCase().trim())
+);
   containerCard.innerHTML = "";
   reviewCard(filterDate);
-  console.dir(value);
-  console.log("работаю");
 }
 
 
@@ -86,6 +83,7 @@ const renderOption = (array) => {
   array.forEach((element) => {
     let option = document.createElement("option");
     option.textContent = element;
+    option.value = element;
     select.append(option);
 
   });
