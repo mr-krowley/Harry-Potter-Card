@@ -9,12 +9,12 @@ function createCard(obj) {
   let card = document.createElement("div"); // создание саммой карточки
   card.classList.add("card");
 
-  card.innerHTML = `<div class="image"><img src="${
+  // создание картинки и контенера textCard с остальным текстом
+  card.innerHTML = `<div> <img class="image" src="${
     obj.image
   }" alt="character photo"></div>
-                    <h2 class="name">${obj.name}</h2>
-                    <div class="textCard">
-                      
+                    <div class="textCard">            
+                      <h2 class="name">${obj.name}</h2>
                       <p>Actor: ${obj.actor}</p>
                       <p>Gender: ${obj.gender}</p>
                       <p>House: ${obj.house == "" ? "unknown" : obj.house}</p>
@@ -25,81 +25,34 @@ function createCard(obj) {
 
                     </div>`;
 
-  
-
   return card;
 }
-
-
-
-  // let textCard = document.createElement("div");
-  // textCard.setAttribute("class", "textCard");
-
-  // let image = document.createElement("img"); // создание картинки
-  // image.setAttribute("class", "image");
-  // image.src = obj.image;
-
-  // let tname = document.createElement("h2"); //создание  заголовка name
-  // tname.classList.add("name");
-  // tname.textContent = obj.name;
-
-  // let actor = document.createElement("p"); // создание остального текста текста
-  // actor.classList.add("actor");
-  // actor.textContent = `actor: ${obj.actor}`;
-
-  // let gender = document.createElement("p");
-  // gender.classList.add("gender");
-  // gender.textContent = `gender: ${obj.gender}`;
-
-  // let house = document.createElement("p");
-  // house.classList.add("house");
-  // house.textContent = `house: ${obj.house}`;
-
-  // let wand = document.createElement("p");
-  // wand.classList.add("wand");
-  // wand.textContent = `wand: ${obj.wand.core ? obj.wand.core : "unknown"}`;
-
-  // let alive = document.createElement("p");
-  // alive.classList.add("alive");
-  // alive.textContent = `alive: ${obj.alive}`;
-
-  // textCard.append(tname, actor, gender, house, wand, alive); //вставка текста в textCard
-
-  // card.append(image, textCard); // вставка кортинки и коробки с текстом в карточку
-
-  // containerCard.append(card); //вставка созданного в Html
-
 
 function reviewCard(arr) {
   //функция перебора элементов из  передоваемого data она же и вызывает метот отрисовки createCard
   arr.forEach(function (elem) {
     containerCard.append(createCard(elem));
   });
-
-  //return arr;
 }
 function searchFilter(event) {
   // функция обработчик поисковой строки сравнение ввода с ключевыми словами карточек name и выбор селекта house
-  let filterDate = data.filter(
-    (card) =>
-      card.house.includes(select.value)                                                                                                      
-  )
-    .filter(
-    (card) =>
-  card.name.toLowerCase().includes(input.value.toLowerCase().trim())
-);
+  let filterDate = data
+    .filter((card) => card.house.includes(select.value))
+    .filter((card) =>
+      card.name.toLowerCase().includes(input.value.toLowerCase().trim())
+    );
   containerCard.innerHTML = "";
   reviewCard(filterDate);
 }
-
-
-
 const selectData = (arr) => {
   // функция создает новый  масив со списком школ оставляя уникальные значения
-  const newData = arr.map((elem)=> elem.house) ; // преобразую данные сставляя только названия школ
-  const endData = [...new Set(newData)]; // фильтрую на юникальность в новый масив
-   renderOption(endData);
-}
+  const newData = arr.map((elem) => elem.house); // преобразую данные сставляя только названия школ
+  const endData = [...new Set(newData)].filter((elem) => elem != ""); // фильтрую на юникальность в новый масив
+
+  console.log(newData);
+  console.log(endData);
+  renderOption(endData);
+};
 
 const renderOption = (array) => {
   // функция создания option в html
@@ -108,18 +61,14 @@ const renderOption = (array) => {
     option.textContent = element;
     option.value = element;
     select.append(option);
-
   });
+};
 
-
-}
-
-
-
+(function main() {
+  // самовызывающаяся функция main точкa входа в програму
+  reviewCard(data);
+  selectData(data);
+})();
 
 input.addEventListener("input", searchFilter);
 select.addEventListener("change", searchFilter);
-
-reviewCard(data);
-
-selectData(data);
